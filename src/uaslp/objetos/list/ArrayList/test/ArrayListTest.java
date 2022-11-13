@@ -1,29 +1,13 @@
-package uaslp.objetos.list.LinkedList.test;
-import uaslp.objetos.list.LinkedList.LinkedList;
+package uaslp.objetos.list.ArrayList.test;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import uaslp.objetos.list.ArrayList.ArrayList;
 
-public class LinkedListTest {
-    @Test
-    public void getIteratorTest() {
-        LinkedList test = new LinkedList();
-
-        test.addAtTail("1");
-        test.addAtTail("2");
-        test.addAtTail("3");
-
-        LinkedList.LinkedListIterator testIterator = test.getIterator();
-
-        int i = 0;
-        while(testIterator.hasNext()) {
-            Assertions.assertEquals(test.getAt(i), testIterator.next());
-            i++;
-        }
-    }
+public class ArrayListTest {
     @Test
     public void addAtTailTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
@@ -36,20 +20,20 @@ public class LinkedListTest {
 
     @Test
     public void addAtFrontTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
-        test.addAtFront("1");
-        test.addAtFront("2");
         test.addAtFront("3");
+        test.addAtFront("2");
+        test.addAtFront("1");
 
-        Assertions.assertEquals("3", test.getAt(0));
+        Assertions.assertEquals("1", test.getAt(0));
         Assertions.assertEquals("2", test.getAt(1));
-        Assertions.assertEquals("1", test.getAt(2));
+        Assertions.assertEquals("3", test.getAt(2));
     }
 
     @Test
     public void removeTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
@@ -70,8 +54,25 @@ public class LinkedListTest {
     }
 
     @Test
+    public void removeAll() {
+        ArrayList test = new ArrayList();
+
+        test.addAtTail("1");
+        test.addAtTail("2");
+        test.addAtTail("3");
+
+        Assertions.assertEquals("1", test.getAt(0));
+        Assertions.assertEquals("2", test.getAt(1));
+        Assertions.assertEquals("3", test.getAt(2));
+
+        test.removeAll();
+
+        Assertions.assertEquals(0, test.getSize());
+    }
+
+    @Test
     public void setAtTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
@@ -88,19 +89,8 @@ public class LinkedListTest {
     }
 
     @Test
-    public void getSizeTest() {
-        LinkedList test = new LinkedList();
-
-        test.addAtTail("1");
-        test.addAtTail("2");
-        test.addAtTail("3");
-
-        Assertions.assertEquals(3, test.getSize());
-    }
-
-    @Test
     public void getAtTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
@@ -115,7 +105,7 @@ public class LinkedListTest {
 
     @Test
     public void removeAllWithValueTest() {
-        LinkedList test = new LinkedList();
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
@@ -123,26 +113,37 @@ public class LinkedListTest {
         test.addAtTail("3");
         test.addAtTail("3");
 
-        test.removeAllWithValue("4");
+        test.removeAllWithValue("3");
 
-        Assertions.assertEquals(5, test.getSize());
+        Assertions.assertEquals(2, test.getSize());
         Assertions.assertEquals("1", test.getAt(0));
         Assertions.assertEquals("2", test.getAt(1));
     }
+
     @Test
-    public void removeAllTest() {
-        LinkedList test = new LinkedList();
+    public void getSizeTest() {
+        ArrayList test = new ArrayList();
 
         test.addAtTail("1");
         test.addAtTail("2");
         test.addAtTail("3");
 
-        Assertions.assertEquals("1", test.getAt(0));
-        Assertions.assertEquals("2", test.getAt(1));
-        Assertions.assertEquals("3", test.getAt(2));
+        Assertions.assertEquals(3, test.getSize());
+    }
 
-        test.removeAll();
+    public void getIteratorTest() {
+        ArrayList test = new ArrayList();
 
-        Assertions.assertEquals(0, test.getSize());
+        test.addAtTail("1");
+        test.addAtTail("2");
+        test.addAtTail("3");
+
+        ArrayList.ArrayListIterator testIterator = (ArrayList.ArrayListIterator) test.getIterator();
+
+        int i = 0;
+        while(testIterator.hasNext()) {
+            Assertions.assertEquals(test.getAt(i), testIterator.next());
+            i++;
+        }
     }
 }
